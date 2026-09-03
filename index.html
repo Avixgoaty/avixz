@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevStudio - Web Development Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(99, 102, 241, 0.5);
+      border-radius: 50%;
+      animation: float 15s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      animation: fadeInDown 1s ease;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff;
+      background: rgba(99, 102, 241, 0.2);
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      color: #818cf8;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge i {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #fff;
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 60px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .services {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      color: #94a3b8;
+      font-size: 18px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .service-card:nth-child(1) .service-icon { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+    .service-card:nth-child(2) .service-icon { background: linear-gradient(135deg, #ec4899, #f43f5e); }
+    .service-card:nth-child(3) .service-icon { background: linear-gradient(135deg, #10b981, #34d399); }
+    .service-card:nth-child(4) .service-icon { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+    .service-card:nth-child(5) .service-icon { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+    .service-card:nth-child(6) .service-icon { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+
+    .service-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .pricing {
+      padding: 60px 0;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .pricing-card.featured {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured::before {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pricing-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .pricing-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price {
+      font-size: 48px;
+      font-weight: 800;
+      margin: 20px 0;
+    }
+
+    .pricing-card .price span {
+      font-size: 16px;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .pricing-card li {
+      padding: 10px 0;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .pricing-card li i {
+      color: #10b981;
+    }
+
+    .portfolio {
+      padding: 60px 0;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .portfolio-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-8px);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .portfolio-thumb {
+      height: 180px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .portfolio-info {
+      padding: 24px;
+    }
+
+    .portfolio-info h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-info p {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .portfolio-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-tags span {
+      background: rgba(99, 102, 241, 0.1);
+      color: #818cf8;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .discord-section {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .discord-card {
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(88, 101, 242, 0.05));
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      border-radius: 24px;
+      padding: 60px 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .discord-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #5865f2, #4752c4);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 24px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .discord-card h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .discord-card p {
+      color: #94a3b8;
+      margin-bottom: 32px;
+      font-size: 18px;
+    }
+
+    .discord-username {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(88, 101, 242, 0.2);
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: 600;
+      font-family: monospace;
+      border: 2px dashed rgba(88, 101, 242, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .discord-username:hover {
+      background: rgba(88, 101, 242, 0.3);
+      border-style: solid;
+    }
+
+    .discord-username i {
+      color: #5865f2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: #64748b;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      .stats { flex-direction: column; gap: 24px; }
+      .pricing-card.featured { transform: scale(1); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <div class="container">
+    <nav>
+      <div class="logo" onclick="showPage('home')"><i class="fas fa-code"></i> DevStudio</div>
+      <ul class="nav-links">
+        <li><a onclick="showPage('home')" class="nav-link active" data-page="home">Home</a></li>
+        <li><a onclick="showPage('services')" class="nav-link" data-page="services">Services</a></li>
+        <li><a onclick="showPage('pricing')" class="nav-link" data-page="pricing">Pricing</a></li>
+        <li><a onclick="showPage('portfolio')" class="nav-link" data-page="portfolio">Portfolio</a></li>
+        <li><a onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div id="home" class="page active">
+      <section class="hero">
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i>
+          Available for new projects
+        </div>
+        <h1>Websites That <span>Convert</span></h1>
+        <p>Custom web development services tailored to your needs. Modern, fast, and responsive websites that help your business grow.</p>
+        <div class="cta-group">
+          <a onclick="showPage('contact')" class="btn btn-primary">
+            <i class="fab fa-discord"></i>
+            Get Started on Discord
+          </a>
+          <a onclick="showPage('services')" class="btn btn-secondary">
+            <i class="fas fa-eye"></i>
+            View Services
+          </a>
+        </div>
+        
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">24h</div>
+            <div class="stat-label">Avg. Response Time</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services">
+        <div class="section-header">
+          <h2>What I Build</h2>
+          <p>Full-stack web development services for any project size</p>
+        </div>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+            <h3>Custom Websites</h3>
+            <p>Beautiful, hand-coded websites built from scratch with modern technologies.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3>E-Commerce</h3>
+            <p>Online stores with secure payments, inventory management, and smooth checkout.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Responsive Design</h3>
+            <p>Websites that look perfect on every device - desktop, tablet, and mobile.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="services" class="page">
+      <section class="services">
+        <div class="section-header">
+          <h2>All Services</h2>
+          <p>Everything you need for a powerful online presence</p>
+        </div>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+            <h3>Custom Websites</h3>
+            <p>Beautiful, hand-coded websites built from scratch with modern technologies. No templates, just unique designs tailored to your brand.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3>E-Commerce</h3>
+            <p>Online stores with secure payments, inventory management, and a smooth checkout experience that converts visitors into customers.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Responsive Design</h3>
+            <p>Websites that look perfect on every device - desktop, tablet, and mobile. Pixel-perfect implementation guaranteed.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Landing Pages</h3>
+            <p>High-converting landing pages optimized for speed and SEO. Turn visitors into customers with compelling designs.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-tools"></i></div>
+            <h3>Website Maintenance</h3>
+            <p>Ongoing support, updates, and optimizations to keep your site running smoothly and securely at all times.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+            <h3>UI/UX Design</h3>
+            <p>Modern, user-friendly interfaces that provide an exceptional experience for your visitors and boost engagement.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="pricing" class="page">
+      <section class="pricing">
+        <div class="section-header">
+          <h2>Simple Pricing</h2>
+          <p>Transparent pricing, no hidden fees. Updated rates for 2025.</p>
+        </div>
+        
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Starter</h3>
+            <div class="price">$30<span>/project</span></div>
+            <ul>
+              <li><i class="fas fa-check"></i> Single Page Website</li>
+              <li><i class="fas fa-check"></i> Mobile Responsive</li>
+              <li><i class="fas fa-check"></i> Basic SEO</li>
+              <li><i class="fas fa-check"></i> 3 Revisions</li>
+              <li><i class="fas fa-check"></i> Delivery in 3-5 days</li>
+            </ul>
+            <a onclick="showPage('contact')" class="btn btn-secondary" style="width: 100%; justify-content: center;">Get Started</a>
+          </div>
+          
+          <div class="pricing-card featured">
+            <h3>Business</h3>
+            <div class="price">$250<span>/project</span></div>
+            <ul>
+              <li><i class="fas fa-check"></i> Multi-Page Website (up to 5)</li>
+              <li><i class="fas fa-check"></i> Advanced Animations</li>
+              <li><i class="fas fa-check"></i> Contact Forms</li>
+              <li><i class="fas fa-check"></i> SEO Optimized</li>
+              <li><i class="fas fa-check"></i> Unlimited Revisions</li>
+              <li><i class="fas fa-check"></i> Delivery in 7-10 days</li>
+            </ul>
+            <a onclick="showPage('contact')" class="btn btn-primary" style="width: 100%; justify-content: center;">Get Started</a>
+          </div>
+          
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="price">Custom<span></span></div>
+            <ul>
+              <li><i class="fas fa-check"></i> Full-Stack Application</li>
+              <li><i class="fas fa-check"></i> Database Integration</li>
+              <li><i class="fas fa-check"></i> User Authentication</li>
+              <li><i class="fas fa-check"></i> API Development</li>
+              <li><i class="fas fa-check"></i> Priority Support</li>
+            </ul>
+            <a onclick="showPage('contact')" class="btn btn-secondary" style="width: 100%; justify-content: center;">Contact Me</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="portfolio" class="page">
+      <section class="portfolio">
+        <div class="section-header">
+          <h2>Recent Work</h2>
+          <p>Projects I've delivered for happy clients</p>
+        </div>
+        
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-thumb"><i class="fas fa-store"></i></div>
+            <div class="portfolio-info">
+              <h3>E-Commerce Store</h3>
+              <p>Modern online clothing store with cart and checkout</p>
+              <div class="portfolio-tags">
+                <span>React</span>
+                <span>Stripe</span>
+                <span>Node.js</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="portfolio-item">
+            <div class="portfolio-thumb" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"><i class="fas fa-spa"></i></div>
+            <div class="portfolio-info">
+              <h3>Beauty Salon</h3>
+              <p>Elegant booking website with appointment system</p>
+              <div class="portfolio-tags">
+                <span>HTML/CSS</span>
+                <span>JavaScript</span>
+                <span>Animations</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="portfolio-item">
+            <div class="portfolio-thumb" style="background: linear-gradient(135deg, #10b981, #34d399);"><i class="fas fa-chart-line"></i></div>
+            <div class="portfolio-info">
+              <h3>Analytics Dashboard</h3>
+              <p>Data visualization dashboard for SaaS company</p>
+              <div class="portfolio-tags">
+                <span>Vue.js</span>
+                <span>D3.js</span>
+                <span>API</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="portfolio-item">
+            <div class="portfolio-thumb" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"><i class="fas fa-burger"></i></div>
+            <div class="portfolio-info">
+              <h3>Restaurant Website</h3>
+              <p>Food ordering site with menu and reservation</p>
+              <div class="portfolio-tags">
+                <span>Responsive</span>
+                <span>CMS</span>
+                <span>SEO</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="portfolio-item">
+            <div class="portfolio-thumb" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);"><i class="fas fa-gamepad"></i></div>
+            <div class="portfolio-info">
+              <h3>Gaming Landing Page</h3>
+              <p>High-energy landing page for game launch</p>
+              <div class="portfolio-tags">
+                <span>GSAP</span>
+                <span>WebGL</span>
+                <span>Fast</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="portfolio-item">
+            <div class="portfolio-thumb" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"><i class="fas fa-briefcase"></i></div>
+            <div class="portfolio-info">
+              <h3>Portfolio Site</h3>
+              <p>Creative portfolio for photographer</p>
+              <div class="portfolio-tags">
+                <span>Minimal</span>
+                <span>Gallery</span>
+                <span>Lazy Load</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="contact" class="page">
+      <section class="discord-section">
+        <div class="discord-card">
+          <div class="discord-icon"><i class="fab fa-discord"></i></div>
+          <h2>Ready to Start?</h2>
+          <p>Let's discuss your project! Add me on Discord and I'll get back to you within 24 hours.</p>
+          <div class="discord-username" onclick="copyDiscord()">
+            <i class="fab fa-discord"></i>
+            <span id="discordUser">g54j</span>
+            <i class="fas fa-copy" id="copyIcon"></i>
+          </div>
+          <p style="margin-top: 24px; font-size: 14px; color: #64748b;">
+            <i class="fas fa-clock" style="margin-right: 8px;"></i>
+            Usually responds in under 2 hours
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 DevStudio. Built with passion.</p>
+    </footer>
+  </div>
+
+  <script>
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    function showPage(pageName) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      document.getElementById(pageName).classList.add('active');
+      
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === pageName) {
+          link.classList.add('active');
+        }
+      });
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function copyDiscord() {
+      const username = document.getElementById('discordUser').textContent;
+      navigator.clipboard.writeText(username).then(() => {
+        const icon = document.getElementById('copyIcon');
+        icon.className = 'fas fa-check';
+        icon.style.color = '#10b981';
+        setTimeout(() => {
+          icon.className = 'fas fa-copy';
+          icon.style.color = '';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
