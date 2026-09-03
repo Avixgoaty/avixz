@@ -55,7 +55,7 @@
       min-height: 100vh;
       color: var(--text-primary);
       overflow-x: hidden;
-      transition: all 0.5s ease;
+      transition: color 0.5s ease;
     }
     /* Inline SVG icon system (no icon CDN needed) */
     svg.ic {
@@ -78,6 +78,7 @@
       overflow: hidden;
       opacity: 0;
       transition: opacity 0.8s ease;
+      will-change: opacity;
     }
     .bg-layer img {
       width: 100%;
@@ -87,6 +88,7 @@
       filter: saturate(1.1);
       transform: scale(1.08);
       transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: transform;
     }
     .bg-layer::after {
       content: "";
@@ -108,8 +110,8 @@
     [data-theme="vermilion"] .discord-card,
     [data-theme="vermilion"] .theme-toggle {
       background: rgba(26, 10, 10, 0.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .theme-toggle {
       position: fixed;
@@ -126,8 +128,9 @@
       justify-content: center;
       font-size: 20px;
       z-index: 1000;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .theme-toggle:hover {
       transform: scale(1.1) rotate(180deg);
@@ -136,7 +139,7 @@
     }
     .theme-toggle .ic {
       color: var(--accent-1);
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     #themeIcon {
       display: flex;
@@ -156,15 +159,16 @@
       width: 4px;
       height: 4px;
       background: var(--accent-1);
-      opacity: 0.5;
+      opacity: 0;
       border-radius: 50%;
-      animation: float 15s infinite;
+      will-change: transform;
+      animation: float 15s linear infinite;
     }
     @keyframes float {
-      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      0% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
       10% { opacity: 0.5; }
       90% { opacity: 0.5; }
-      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+      100% { transform: translate3d(0, -10vh, 0) rotate(360deg); opacity: 0; }
     }
     .container {
       position: relative;
@@ -185,12 +189,12 @@
       top: 12px;
       z-index: 100;
       background: rgba(15, 15, 26, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border-color);
       border-radius: 16px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      animation: fadeInDown 1s ease;
+      animation: fadeInDown 0.8s ease;
     }
     [data-theme="vermilion"] nav {
       background: rgba(26, 10, 10, 0.65);
@@ -204,7 +208,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
@@ -231,7 +235,7 @@
       font-weight: 500;
       padding: 8px 16px;
       border-radius: 8px;
-      transition: all 0.3s;
+      transition: background 0.25s ease, color 0.25s ease;
       cursor: pointer;
       white-space: nowrap;
       display: block;
@@ -240,16 +244,19 @@
       color: var(--text-primary);
       background: rgba(99, 102, 241, 0.1);
     }
+    /* ---------- SMOOTH PAGE CROSSFADE ---------- */
     .page {
       display: none;
-      animation: fadeIn 0.5s ease;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.24s ease, transform 0.24s ease;
     }
     .page.active {
       display: block;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .page.active.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .hero {
       text-align: center;
@@ -267,7 +274,7 @@
       font-size: 14px;
       color: var(--accent-1);
       margin-bottom: 24px;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     }
     .hero-badge .ic {
       animation: pulse 2s infinite;
@@ -285,7 +292,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      transition: all 0.3s ease;
     }
     .hero h1 span {
       background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
@@ -299,7 +305,7 @@
       max-width: 600px;
       margin: 0 auto 40px;
       line-height: 1.6;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .cta-group {
       display: flex;
@@ -316,7 +322,7 @@
       font-weight: 600;
       font-size: 16px;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
       cursor: pointer;
       border: none;
     }
@@ -328,7 +334,6 @@
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 20px 60px var(--accent-1);
       opacity: 1;
     }
     .btn-secondary {
@@ -349,7 +354,7 @@
       background: var(--card-bg);
       border-radius: 20px;
       border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
     .stat {
       text-align: center;
@@ -361,13 +366,12 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      transition: all 0.3s ease;
     }
     .stat-label {
       font-size: 14px;
       color: var(--text-muted);
       margin-top: 4px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .services {
       padding: 60px 0;
@@ -380,12 +384,12 @@
       font-size: 40px;
       font-weight: 700;
       margin-bottom: 16px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .section-header p {
       color: var(--text-secondary);
       font-size: 18px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .services-grid {
       display: grid;
@@ -397,7 +401,7 @@
       border: 1px solid var(--border-color);
       border-radius: 20px;
       padding: 32px;
-      transition: all 0.3s;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
     .service-card:hover {
       transform: translateY(-8px);
@@ -414,7 +418,6 @@
       font-size: 24px;
       color: #fff;
       margin-bottom: 20px;
-      transition: all 0.3s ease;
     }
     .service-card:nth-child(1) .service-icon { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); }
     .service-card:nth-child(2) .service-icon { background: linear-gradient(135deg, #ec4899, #f43f5e); }
@@ -426,12 +429,12 @@
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 12px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .service-card p {
       color: var(--text-secondary);
       line-height: 1.6;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .pricing {
       padding: 60px 0;
@@ -450,7 +453,7 @@
       padding: 40px 32px;
       text-align: center;
       position: relative;
-      transition: all 0.3s;
+      transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
     }
     /* FIXED: removed "opacity: 0.15" — it was fading the whole card including
        the text. The soft gradient now lives only in the background (rgba),
@@ -485,19 +488,18 @@
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 8px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .pricing-card .price {
       font-size: 48px;
       font-weight: 800;
       margin: 20px 0;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .pricing-card .price span {
       font-size: 16px;
       color: var(--text-secondary);
       font-weight: 400;
-      transition: all 0.3s ease;
     }
     .pricing-card ul {
       list-style: none;
@@ -510,7 +512,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .pricing-card li .ic {
       color: var(--success-color);
@@ -528,7 +530,7 @@
       border: 1px solid var(--border-color);
       border-radius: 20px;
       overflow: hidden;
-      transition: all 0.3s;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
     .portfolio-item:hover {
       transform: translateY(-8px);
@@ -542,7 +544,6 @@
       justify-content: center;
       font-size: 48px;
       color: #fff;
-      transition: all 0.3s ease;
     }
     .portfolio-info {
       padding: 24px;
@@ -551,12 +552,12 @@
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 8px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .portfolio-info p {
       color: var(--text-secondary);
       font-size: 14px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .portfolio-tags {
       display: flex;
@@ -571,7 +572,7 @@
       border-radius: 20px;
       font-size: 12px;
       border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     }
     .discord-section {
       padding: 60px 0;
@@ -586,7 +587,7 @@
       padding: 60px 40px;
       max-width: 600px;
       margin: 0 auto;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
     [data-theme="vermilion"] .discord-card {
       background: linear-gradient(135deg, rgba(220, 38, 38, 0.16), rgba(239, 68, 68, 0.16));
@@ -602,24 +603,24 @@
       font-size: 40px;
       color: #fff;
       margin: 0 auto 24px;
-      animation: bounce 2s infinite;
-      transition: all 0.3s ease;
+      animation: bounce 2s ease-in-out infinite;
+      will-change: transform;
     }
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -10px, 0); }
     }
     .discord-card h2 {
       font-size: 32px;
       font-weight: 700;
       margin-bottom: 16px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     .discord-card p {
       color: var(--text-secondary);
       margin-bottom: 32px;
       font-size: 18px;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease;
     }
     /* FIXED: was a solid accent background at opacity 0.3 (unreadable).
        Now a translucent accent tint with fully visible text. */
@@ -635,7 +636,7 @@
       font-family: 'Courier New', monospace;
       border: 2px dashed var(--accent-1);
       cursor: pointer;
-      transition: all 0.3s;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
       color: var(--text-primary);
     }
     .discord-username:hover {
@@ -659,11 +660,11 @@
       padding: 40px 0;
       color: var(--text-muted);
       border-top: 1px solid var(--border-color);
-      transition: all 0.3s ease;
+      transition: color 0.3s ease, border-color 0.3s ease;
     }
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translate3d(0, -20px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
     }
     @media (max-width: 768px) {
       .hero h1 { font-size: 36px; }
@@ -677,6 +678,15 @@
         right: 16px;
         width: 44px;
         height: 44px;
+      }
+    }
+    /* Respect reduced motion + keep weaker devices smooth */
+    @media (prefers-reduced-motion: reduce) {
+      .particle, .discord-icon, .hero-badge .ic {
+        animation: none;
+      }
+      .page, .service-card, .portfolio-item, .pricing-card, .btn {
+        transition-duration: 0.01s;
       }
     }
   </style>
@@ -705,7 +715,7 @@
       <div></div>
     </nav>
     <!-- HOME PAGE -->
-    <div id="home" class="page active">
+    <div id="home" class="page active visible">
       <section class="hero">
         <div class="hero-badge">
           <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -920,7 +930,7 @@
             </div>
           </div>
           <div class="portfolio-item">
-            <div class="portfolio-thumb" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 v16"/></svg></div>
+            <div class="portfolio-thumb" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
             <div class="portfolio-info">
               <h3>Portfolio Site</h3>
               <p>Creative portfolio for photographer</p>
@@ -984,29 +994,50 @@
       document.body.setAttribute('data-theme', 'vermilion');
       document.getElementById('themeIcon').innerHTML = ICON_FLAME;
     }
-    // Create particles
+    // Create particles (fewer + GPU friendly for smoothness)
     const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 50; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 15 + 's';
-      particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-      particlesContainer.appendChild(particle);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reducedMotion) {
+      for (let i = 0; i < 22; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
     }
-    // Page navigation
+    // Smooth page crossfade
+    let pageSwapTimer = null;
     function showPage(pageName) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      document.getElementById(pageName).classList.add('active');
+      const next = document.getElementById(pageName);
+      const current = document.querySelector('.page.active');
+      // Update nav highlight immediately
       document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.dataset.page === pageName) {
-          link.classList.add('active');
-        }
+        link.classList.toggle('active', link.dataset.page === pageName);
       });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (current === next) return;
+      if (pageSwapTimer) clearTimeout(pageSwapTimer);
+      const reveal = () => {
+        next.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => next.classList.add('visible'));
+        });
+      };
+      if (current) {
+        current.classList.remove('visible');
+        // Clean up any page stuck mid-swap
+        document.querySelectorAll('.page').forEach(p => {
+          if (p !== current && p !== next) p.classList.remove('active', 'visible');
+        });
+        pageSwapTimer = setTimeout(() => {
+          current.classList.remove('active');
+          reveal();
+        }, 220);
+      } else {
+        reveal();
+      }
     }
     // Copy Discord
     function copyDiscord() {
