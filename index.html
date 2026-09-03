@@ -50,6 +50,48 @@
       overflow-x: hidden;
       transition: all 0.5s ease;
     }
+    /* ---------- BACKGROUND IMAGE (red pic — reveals on fire theme) ---------- */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .bg-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+      filter: saturate(1.1);
+      transform: scale(1.08);
+      transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .bg-layer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26, 10, 10, 0.7) 0%, rgba(45, 10, 10, 0.58) 50%, rgba(61, 15, 15, 0.7) 100%);
+    }
+    [data-theme="vermilion"] .bg-layer {
+      opacity: 1;
+    }
+    [data-theme="vermilion"] .bg-layer img {
+      transform: scale(1);
+    }
+    /* Sections pop in front of the red background when fire theme is on */
+    [data-theme="vermilion"] .stats,
+    [data-theme="vermilion"] .service-card,
+    [data-theme="vermilion"] .pricing-card,
+    [data-theme="vermilion"] .portfolio-item,
+    [data-theme="vermilion"] .discord-card,
+    [data-theme="vermilion"] .theme-toggle {
+      background: rgba(26, 10, 10, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
     .theme-toggle {
       position: fixed;
       top: 24px;
@@ -113,8 +155,22 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 0;
+      gap: 16px;
+      padding: 14px 20px;
+      margin-top: 12px;
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      background: rgba(15, 15, 26, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
       animation: fadeInDown 1s ease;
+    }
+    [data-theme="vermilion"] nav {
+      background: rgba(26, 10, 10, 0.65);
     }
     .logo {
       font-size: 28px;
@@ -567,7 +623,11 @@
       .hero h1 { font-size: 36px; }
       .stats { flex-direction: column; gap: 24px; }
       .pricing-card.featured { transform: scale(1); }
-      .nav-links { display: none; }
+      nav { padding: 10px 14px; gap: 8px; top: 8px; margin-top: 8px; }
+      .logo { font-size: 20px; }
+      .nav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { padding: 6px 9px; font-size: 12px; white-space: nowrap; }
       .theme-toggle {
         top: 16px;
         right: 16px;
@@ -582,6 +642,10 @@
   <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
     <i class="fas fa-palette" id="themeIcon"></i>
   </button>
+  <!-- Background image layer (red pic, sits behind everything) -->
+  <div class="bg-layer">
+    <img src="https://images.pexels.com/photos/18545010/pexels-photo-18545010.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="" aria-hidden="true">
+  </div>
   <div class="particles" id="particles"></div>
   <div class="container">
     <!-- Navigation -->
