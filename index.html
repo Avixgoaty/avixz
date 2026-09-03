@@ -12,7 +12,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     :root {
       --bg-primary: #0f0f1a;
       --bg-secondary: #1a1a2e;
@@ -28,7 +27,6 @@
       --discord-color: #5865f2;
       --success-color: #10b981;
     }
-
     [data-theme="vermilion"] {
       --bg-primary: #1a0a0a;
       --bg-secondary: #2d0a0a;
@@ -44,7 +42,6 @@
       --discord-color: #dc2626;
       --success-color: #22c55e;
     }
-
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
@@ -53,7 +50,6 @@
       overflow-x: hidden;
       transition: all 0.5s ease;
     }
-
     .theme-toggle {
       position: fixed;
       top: 24px;
@@ -72,18 +68,15 @@
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
     }
-
     .theme-toggle:hover {
       transform: scale(1.1) rotate(180deg);
       border-color: var(--accent-1);
       box-shadow: 0 0 30px var(--accent-1);
     }
-
     .theme-toggle i {
       color: var(--accent-1);
       transition: all 0.3s ease;
     }
-
     .particles {
       position: fixed;
       top: 0;
@@ -94,7 +87,6 @@
       overflow: hidden;
       z-index: 0;
     }
-
     .particle {
       position: absolute;
       width: 4px;
@@ -104,14 +96,12 @@
       border-radius: 50%;
       animation: float 15s infinite;
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
       10% { opacity: 0.5; }
       90% { opacity: 0.5; }
       100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
     }
-
     .container {
       position: relative;
       z-index: 1;
@@ -119,7 +109,6 @@
       margin: 0 auto;
       padding: 0 24px;
     }
-
     nav {
       display: flex;
       justify-content: space-between;
@@ -127,7 +116,6 @@
       padding: 24px 0;
       animation: fadeInDown 1s ease;
     }
-
     .logo {
       font-size: 28px;
       font-weight: 800;
@@ -138,13 +126,11 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
     .nav-links {
       display: flex;
       gap: 8px;
       list-style: none;
     }
-
     .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
@@ -154,31 +140,25 @@
       transition: all 0.3s;
       cursor: pointer;
     }
-
     .nav-links a:hover, .nav-links a.active {
       color: var(--text-primary);
       background: rgba(99, 102, 241, 0.1);
     }
-
     .page {
       display: none;
       animation: fadeIn 0.5s ease;
     }
-
     .page.active {
       display: block;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .hero {
       text-align: center;
       padding: 60px 0 40px;
     }
-
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -193,16 +173,13 @@
       margin-bottom: 24px;
       transition: all 0.3s ease;
     }
-
     .hero-badge i {
       animation: pulse 2s infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
     }
-
     .hero h1 {
       font-size: 56px;
       font-weight: 800;
@@ -214,14 +191,12 @@
       background-clip: text;
       transition: all 0.3s ease;
     }
-
     .hero h1 span {
       background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .hero p {
       font-size: 20px;
       color: var(--text-secondary);
@@ -230,14 +205,12 @@
       line-height: 1.6;
       transition: all 0.3s ease;
     }
-
     .cta-group {
       display: flex;
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
     }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -251,31 +224,26 @@
       cursor: pointer;
       border: none;
     }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
       color: #fff;
       box-shadow: 0 10px 40px var(--accent-1);
       opacity: 0.9;
     }
-
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 20px 60px var(--accent-1);
       opacity: 1;
     }
-
     .btn-secondary {
       background: var(--card-bg);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
     }
-
     .btn-secondary:hover {
       background: rgba(255, 255, 255, 0.1);
       border-color: var(--accent-1);
     }
-
     .stats {
       display: flex;
       justify-content: center;
@@ -287,11 +255,9 @@
       border: 1px solid var(--border-color);
       transition: all 0.3s ease;
     }
-
     .stat {
       text-align: center;
     }
-
     .stat-number {
       font-size: 36px;
       font-weight: 800;
@@ -301,42 +267,35 @@
       background-clip: text;
       transition: all 0.3s ease;
     }
-
     .stat-label {
       font-size: 14px;
       color: var(--text-muted);
       margin-top: 4px;
       transition: all 0.3s ease;
     }
-
     .services {
       padding: 60px 0;
     }
-
     .section-header {
       text-align: center;
       margin-bottom: 50px;
     }
-
     .section-header h2 {
       font-size: 40px;
       font-weight: 700;
       margin-bottom: 16px;
       transition: all 0.3s ease;
     }
-
     .section-header p {
       color: var(--text-secondary);
       font-size: 18px;
       transition: all 0.3s ease;
     }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
     }
-
     .service-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -344,13 +303,11 @@
       padding: 32px;
       transition: all 0.3s;
     }
-
     .service-card:hover {
       transform: translateY(-8px);
       border-color: var(--accent-1);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
-
     .service-icon {
       width: 60px;
       height: 60px;
@@ -362,31 +319,26 @@
       margin-bottom: 20px;
       transition: all 0.3s ease;
     }
-
     .service-card:nth-child(1) .service-icon { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); }
-    .service-card:nth-child(2) .service-icon { background: linear-gradient(135deg, var(--accent-3), #f43f5e); }
+    .service-card:nth-child(2) .service-icon { background: linear-gradient(135deg, #ec4899, #f43f5e); }
     .service-card:nth-child(3) .service-icon { background: linear-gradient(135deg, #10b981, #34d399); }
     .service-card:nth-child(4) .service-icon { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
     .service-card:nth-child(5) .service-icon { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
     .service-card:nth-child(6) .service-icon { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
-
     .service-card h3 {
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 12px;
       transition: all 0.3s ease;
     }
-
     .service-card p {
       color: var(--text-secondary);
       line-height: 1.6;
       transition: all 0.3s ease;
     }
-
     .pricing {
       padding: 60px 0;
     }
-
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -394,7 +346,6 @@
       max-width: 900px;
       margin: 0 auto;
     }
-
     .pricing-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -404,18 +355,18 @@
       position: relative;
       transition: all 0.3s;
     }
-
+    /* FIXED: removed "opacity: 0.15" — it was fading the whole card including
+       the text. The soft gradient now lives only in the background (rgba),
+       so the card keeps its faded look but the text stays 100% readable. */
     .pricing-card.featured {
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      opacity: 0.15;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
       border-color: var(--accent-1);
       transform: scale(1.05);
     }
-
+    /* Vermilion theme version of the popular card background */
     [data-theme="vermilion"] .pricing-card.featured {
-      opacity: 0.2;
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.22), rgba(239, 68, 68, 0.22));
     }
-
     .pricing-card.featured::before {
       content: "MOST POPULAR";
       position: absolute;
@@ -430,37 +381,31 @@
       color: #fff;
       opacity: 1;
     }
-
     .pricing-card:hover {
       border-color: var(--accent-1);
     }
-
     .pricing-card h3 {
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 8px;
       transition: all 0.3s ease;
     }
-
     .pricing-card .price {
       font-size: 48px;
       font-weight: 800;
       margin: 20px 0;
       transition: all 0.3s ease;
     }
-
     .pricing-card .price span {
       font-size: 16px;
       color: var(--text-secondary);
       font-weight: 400;
       transition: all 0.3s ease;
     }
-
     .pricing-card ul {
       list-style: none;
       margin: 24px 0;
     }
-
     .pricing-card li {
       padding: 10px 0;
       color: var(--text-secondary);
@@ -470,21 +415,17 @@
       gap: 8px;
       transition: all 0.3s ease;
     }
-
     .pricing-card li i {
       color: var(--success-color);
     }
-
     .portfolio {
       padding: 60px 0;
     }
-
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
     }
-
     .portfolio-item {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -492,12 +433,10 @@
       overflow: hidden;
       transition: all 0.3s;
     }
-
     .portfolio-item:hover {
       transform: translateY(-8px);
       border-color: var(--accent-1);
     }
-
     .portfolio-thumb {
       height: 180px;
       background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
@@ -507,31 +446,26 @@
       font-size: 48px;
       transition: all 0.3s ease;
     }
-
     .portfolio-info {
       padding: 24px;
     }
-
     .portfolio-info h3 {
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 8px;
       transition: all 0.3s ease;
     }
-
     .portfolio-info p {
       color: var(--text-secondary);
       font-size: 14px;
       transition: all 0.3s ease;
     }
-
     .portfolio-tags {
       display: flex;
       gap: 8px;
       margin-top: 16px;
       flex-wrap: wrap;
     }
-
     .portfolio-tags span {
       background: var(--card-bg);
       color: var(--accent-1);
@@ -541,15 +475,14 @@
       border: 1px solid var(--border-color);
       transition: all 0.3s ease;
     }
-
     .discord-section {
       padding: 60px 0;
       text-align: center;
     }
-
+    /* FIXED: same problem as the popular card — "opacity: 0.1" was fading
+       all the text. Now only the background gradient is translucent. */
     .discord-card {
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      opacity: 0.1;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(168, 85, 247, 0.14));
       border: 1px solid var(--accent-1);
       border-radius: 24px;
       padding: 60px 40px;
@@ -557,11 +490,9 @@
       margin: 0 auto;
       transition: all 0.3s ease;
     }
-
     [data-theme="vermilion"] .discord-card {
-      opacity: 0.15;
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.16), rgba(239, 68, 68, 0.16));
     }
-
     .discord-icon {
       width: 80px;
       height: 80px;
@@ -575,32 +506,29 @@
       animation: bounce 2s infinite;
       transition: all 0.3s ease;
     }
-
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-
     .discord-card h2 {
       font-size: 32px;
       font-weight: 700;
       margin-bottom: 16px;
       transition: all 0.3s ease;
     }
-
     .discord-card p {
       color: var(--text-secondary);
       margin-bottom: 32px;
       font-size: 18px;
       transition: all 0.3s ease;
     }
-
+    /* FIXED: was a solid accent background at opacity 0.3 (unreadable).
+       Now a translucent accent tint with fully visible text. */
     .discord-username {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--accent-1);
-      opacity: 0.3;
+      background: rgba(99, 102, 241, 0.18);
       padding: 16px 32px;
       border-radius: 12px;
       font-size: 20px;
@@ -611,16 +539,19 @@
       transition: all 0.3s;
       color: var(--text-primary);
     }
-
     .discord-username:hover {
-      opacity: 0.5;
+      background: rgba(99, 102, 241, 0.32);
       border-style: solid;
     }
-
+    [data-theme="vermilion"] .discord-username {
+      background: rgba(220, 38, 38, 0.18);
+    }
+    [data-theme="vermilion"] .discord-username:hover {
+      background: rgba(220, 38, 38, 0.32);
+    }
     .discord-username i {
       color: var(--text-primary);
     }
-
     footer {
       text-align: center;
       padding: 40px 0;
@@ -628,12 +559,10 @@
       border-top: 1px solid var(--border-color);
       transition: all 0.3s ease;
     }
-
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @media (max-width: 768px) {
       .hero h1 { font-size: 36px; }
       .stats { flex-direction: column; gap: 24px; }
@@ -653,9 +582,7 @@
   <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
     <i class="fas fa-palette" id="themeIcon"></i>
   </button>
-
   <div class="particles" id="particles"></div>
-
   <div class="container">
     <!-- Navigation -->
     <nav>
@@ -668,7 +595,6 @@
         <li><a onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
       </ul>
     </nav>
-
     <!-- HOME PAGE -->
     <div id="home" class="page active">
       <section class="hero">
@@ -688,7 +614,6 @@
             View Services
           </a>
         </div>
-        
         <div class="stats">
           <div class="stat">
             <div class="stat-number">2+</div>
@@ -704,26 +629,22 @@
           </div>
         </div>
       </section>
-
       <section class="services">
         <div class="section-header">
           <h2>What I Build</h2>
           <p>Full-stack web development services for any project size</p>
         </div>
-        
         <div class="services-grid">
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
             <h3>Custom Websites</h3>
             <p>Beautiful, hand-coded websites built from scratch with modern technologies.</p>
           </div>
-          
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
             <h3>E-Commerce</h3>
             <p>Online stores with secure payments, inventory management, and smooth checkout.</p>
           </div>
-          
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
             <h3>Responsive Design</h3>
@@ -732,7 +653,6 @@
         </div>
       </section>
     </div>
-
     <!-- SERVICES PAGE -->
     <div id="services" class="page">
       <section class="services">
@@ -740,38 +660,32 @@
           <h2>All Services</h2>
           <p>Everything you need for a powerful online presence</p>
         </div>
-        
         <div class="services-grid">
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
             <h3>Custom Websites</h3>
             <p>Beautiful, hand-coded websites built from scratch with modern technologies. No templates, just unique designs tailored to your brand.</p>
           </div>
-          
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
             <h3>E-Commerce</h3>
             <p>Online stores with secure payments, inventory management, and a smooth checkout experience that converts visitors into customers.</p>
           </div>
-          
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
             <h3>Responsive Design</h3>
             <p>Websites that look perfect on every device - desktop, tablet, and mobile. Pixel-perfect implementation guaranteed.</p>
           </div>
-          
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-rocket"></i></div>
             <h3>Landing Pages</h3>
             <p>High-converting landing pages optimized for speed and SEO. Turn visitors into customers with compelling designs.</p>
           </div>
-          
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-tools"></i></div>
             <h3>Website Maintenance</h3>
             <p>Ongoing support, updates, and optimizations to keep your site running smoothly and securely at all times.</p>
           </div>
-          
           <div class="service-card">
             <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
             <h3>UI/UX Design</h3>
@@ -780,7 +694,6 @@
         </div>
       </section>
     </div>
-
     <!-- PRICING PAGE -->
     <div id="pricing" class="page">
       <section class="pricing">
@@ -788,7 +701,6 @@
           <h2>Simple Pricing</h2>
           <p>Transparent pricing, no hidden fees. Updated rates for 2025.</p>
         </div>
-        
         <div class="pricing-grid">
           <div class="pricing-card">
             <h3>Starter</h3>
@@ -802,7 +714,6 @@
             </ul>
             <a onclick="showPage('contact')" class="btn btn-secondary" style="width: 100%; justify-content: center;">Get Started</a>
           </div>
-          
           <div class="pricing-card featured">
             <h3>Business</h3>
             <div class="price">$250<span>/project</span></div>
@@ -816,7 +727,6 @@
             </ul>
             <a onclick="showPage('contact')" class="btn btn-primary" style="width: 100%; justify-content: center;">Get Started</a>
           </div>
-          
           <div class="pricing-card">
             <h3>Enterprise</h3>
             <div class="price">Custom<span></span></div>
@@ -832,7 +742,6 @@
         </div>
       </section>
     </div>
-
     <!-- PORTFOLIO PAGE -->
     <div id="portfolio" class="page">
       <section class="portfolio">
@@ -840,7 +749,6 @@
           <h2>Recent Work</h2>
           <p>Projects I've delivered for happy clients</p>
         </div>
-        
         <div class="portfolio-grid">
           <div class="portfolio-item">
             <div class="portfolio-thumb"><i class="fas fa-store"></i></div>
@@ -854,7 +762,6 @@
               </div>
             </div>
           </div>
-          
           <div class="portfolio-item">
             <div class="portfolio-thumb" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"><i class="fas fa-spa"></i></div>
             <div class="portfolio-info">
@@ -867,7 +774,6 @@
               </div>
             </div>
           </div>
-          
           <div class="portfolio-item">
             <div class="portfolio-thumb" style="background: linear-gradient(135deg, #10b981, #34d399);"><i class="fas fa-chart-line"></i></div>
             <div class="portfolio-info">
@@ -880,7 +786,6 @@
               </div>
             </div>
           </div>
-          
           <div class="portfolio-item">
             <div class="portfolio-thumb" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"><i class="fas fa-burger"></i></div>
             <div class="portfolio-info">
@@ -893,7 +798,6 @@
               </div>
             </div>
           </div>
-          
           <div class="portfolio-item">
             <div class="portfolio-thumb" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);"><i class="fas fa-gamepad"></i></div>
             <div class="portfolio-info">
@@ -906,7 +810,6 @@
               </div>
             </div>
           </div>
-          
           <div class="portfolio-item">
             <div class="portfolio-thumb" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"><i class="fas fa-briefcase"></i></div>
             <div class="portfolio-info">
@@ -922,7 +825,6 @@
         </div>
       </section>
     </div>
-
     <!-- CONTACT PAGE -->
     <div id="contact" class="page">
       <section class="discord-section">
@@ -942,19 +844,16 @@
         </div>
       </section>
     </div>
-
     <footer>
       <p>&copy; 2025 DevStudio. Built with passion.</p>
     </footer>
   </div>
-
   <script>
     // Theme Toggle
     function toggleTheme() {
       const body = document.body;
       const currentTheme = body.getAttribute('data-theme');
       const icon = document.getElementById('themeIcon');
-      
       if (currentTheme === 'vermilion') {
         body.removeAttribute('data-theme');
         icon.className = 'fas fa-palette';
@@ -965,14 +864,12 @@
         localStorage.setItem('theme', 'vermilion');
       }
     }
-
     // Load saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'vermilion') {
       document.body.setAttribute('data-theme', 'vermilion');
       document.getElementById('themeIcon').className = 'fas fa-fire';
     }
-
     // Create particles
     const particlesContainer = document.getElementById('particles');
     for (let i = 0; i < 50; i++) {
@@ -983,25 +880,20 @@
       particle.style.animationDuration = (10 + Math.random() * 10) + 's';
       particlesContainer.appendChild(particle);
     }
-
     // Page navigation
     function showPage(pageName) {
       document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
       });
-      
       document.getElementById(pageName).classList.add('active');
-      
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
         if (link.dataset.page === pageName) {
           link.classList.add('active');
         }
       });
-      
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     // Copy Discord
     function copyDiscord() {
       const username = document.getElementById('discordUser').textContent;
