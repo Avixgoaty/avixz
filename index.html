@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevStudio - Web Development Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     /* Backup: variable Inter from fontsource CDN (used only if Google Fonts is blocked) */
     @font-face {
@@ -18,6 +19,11 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    html {
+      width: 100%;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
     :root {
       --bg-primary: #0f0f1a;
@@ -53,6 +59,8 @@
       font-family: 'Inter', 'InterFB', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
       min-height: 100vh;
+      min-height: 100svh;
+      width: 100%;
       color: var(--text-primary);
       overflow-x: hidden;
       transition: color 0.5s ease;
@@ -253,6 +261,7 @@
       cursor: pointer;
       white-space: nowrap;
       display: block;
+      touch-action: manipulation;
     }
     .nav-links a:hover, .nav-links a.active {
       color: var(--text-primary);
@@ -339,6 +348,7 @@
       transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
       cursor: pointer;
       border: none;
+      touch-action: manipulation;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
@@ -681,18 +691,227 @@
       to { opacity: 1; transform: translate3d(0, 0, 0); }
     }
     @media (max-width: 768px) {
-      .hero h1 { font-size: 36px; }
-      .stats { flex-direction: column; gap: 24px; }
-      .pricing-card.featured { transform: scale(1); }
-      nav { padding: 10px 14px; gap: 8px; top: 8px; margin-top: 8px; }
-      .logo { font-size: 20px; }
-      .brand-subtitle { padding-left: 27px; font-size: 8px; }
-      .nav-links a { padding: 6px 10px; font-size: 12px; }
+      .container {
+        width: 100%;
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right));
+      }
+      .bg-layer img {
+        object-position: center;
+      }
+      nav {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        top: max(8px, env(safe-area-inset-top));
+        margin-top: 8px;
+        padding: 11px 12px 9px;
+        border-radius: 14px;
+      }
+      nav > div:last-child {
+        display: none;
+      }
+      .brand-lockup {
+        min-width: 0;
+      }
+      .logo {
+        font-size: 20px;
+      }
+      .brand-subtitle {
+        padding-left: 27px;
+        font-size: 8px;
+      }
+      .nav-links {
+        grid-column: 1 / -1;
+        justify-self: stretch;
+        justify-content: space-between;
+        width: 100%;
+        gap: 2px;
+        padding-top: 5px;
+      }
+      .nav-links a {
+        padding: 7px 6px;
+        font-size: 11px;
+      }
       .theme-toggle {
-        top: 16px;
-        right: 16px;
-        width: 44px;
-        height: 44px;
+        top: calc(max(8px, env(safe-area-inset-top)) + 9px);
+        right: max(28px, calc(env(safe-area-inset-right) + 14px));
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .hero {
+        padding: 48px 0 32px;
+      }
+      .hero-badge {
+        margin-bottom: 20px;
+        padding: 7px 13px;
+        font-size: 12px;
+      }
+      .hero h1 {
+        font-size: clamp(34px, 11vw, 46px);
+        line-height: 1.06;
+        margin-bottom: 16px;
+      }
+      .hero p {
+        max-width: 34rem;
+        margin-bottom: 30px;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+      .cta-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .btn {
+        width: min(100%, 330px);
+        min-height: 48px;
+        justify-content: center;
+        padding: 13px 20px;
+        font-size: 15px;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 42px;
+        padding: 20px 8px;
+        border-radius: 16px;
+      }
+      .stat-number {
+        font-size: clamp(24px, 8vw, 32px);
+      }
+      .stat-label {
+        font-size: 10px;
+        line-height: 1.35;
+      }
+      .services,
+      .pricing,
+      .portfolio,
+      .discord-section {
+        padding: 44px 0;
+      }
+      .section-header {
+        margin-bottom: 30px;
+        padding: 0 4px;
+      }
+      .section-header h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+      .section-header p {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .services-grid,
+      .pricing-grid,
+      .portfolio-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        width: 100%;
+      }
+      .service-card,
+      .pricing-card,
+      .portfolio-item {
+        min-width: 0;
+      }
+      .service-card {
+        padding: 24px;
+        border-radius: 16px;
+      }
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 17px;
+        border-radius: 14px;
+      }
+      .pricing-card {
+        padding: 34px 20px 26px;
+        border-radius: 18px;
+      }
+      .pricing-card.featured {
+        transform: none;
+        margin-top: 8px;
+      }
+      .pricing-card .price {
+        overflow-wrap: anywhere;
+        font-size: clamp(38px, 12vw, 48px);
+      }
+      .pricing-card li {
+        align-items: flex-start;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .portfolio-item {
+        border-radius: 16px;
+      }
+      .portfolio-thumb {
+        height: 150px;
+        font-size: 42px;
+      }
+      .portfolio-info {
+        padding: 20px;
+      }
+      .discord-card {
+        width: 100%;
+        padding: 36px 18px;
+        border-radius: 18px;
+      }
+      .discord-icon {
+        width: 68px;
+        height: 68px;
+        font-size: 34px;
+      }
+      .discord-card h2 {
+        font-size: 28px;
+      }
+      .discord-card p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .discord-username {
+        max-width: 100%;
+        padding: 14px 22px;
+        font-size: 18px;
+      }
+      footer {
+        padding: 30px 0;
+        font-size: 13px;
+      }
+    }
+    @media (max-width: 360px) {
+      .container {
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+      }
+      .nav-links {
+        justify-content: flex-start;
+      }
+      .nav-links a {
+        padding-inline: 5px;
+        font-size: 10px;
+      }
+      .theme-toggle {
+        right: max(22px, calc(env(safe-area-inset-right) + 10px));
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .stats {
+        padding-inline: 4px;
+      }
+      .stat-label {
+        font-size: 9px;
+      }
+    }
+    @media (hover: none) {
+      .service-card:hover,
+      .portfolio-item:hover,
+      .btn-primary:hover,
+      .theme-toggle:hover {
+        transform: none;
       }
     }
     /* Respect reduced motion + keep weaker devices smooth */
@@ -713,7 +932,13 @@
   </button>
   <!-- Background image layer (red pic, sits behind everything) -->
   <div class="bg-layer">
-    <img src="https://images.pexels.com/photos/18545010/pexels-photo-18545010.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="" aria-hidden="true">
+    <img
+      src="https://images.pexels.com/photos/18545010/pexels-photo-18545010.jpeg?auto=compress&cs=tinysrgb&w=1920"
+      srcset="https://images.pexels.com/photos/18545010/pexels-photo-18545010.jpeg?auto=compress&cs=tinysrgb&w=640 640w, https://images.pexels.com/photos/18545010/pexels-photo-18545010.jpeg?auto=compress&cs=tinysrgb&w=960 960w, https://images.pexels.com/photos/18545010/pexels-photo-18545010.jpeg?auto=compress&cs=tinysrgb&w=1920 1920w"
+      sizes="100vw"
+      alt=""
+      aria-hidden="true"
+      decoding="async">
   </div>
   <div class="particles" id="particles"></div>
   <div class="container">
@@ -1073,4 +1298,3 @@
   </script>
 </body>
 </html>
-
