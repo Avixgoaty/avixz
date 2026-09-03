@@ -195,10 +195,18 @@
     [data-theme="vermilion"] nav {
       background: rgba(26, 10, 10, 0.65);
     }
-    .logo {
+    .brand-lockup {
       justify-self: start;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      cursor: pointer;
+    }
+    .logo {
       font-size: 28px;
       font-weight: 800;
+      line-height: 1;
       background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -209,6 +217,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+    }
+    .brand-subtitle {
+      padding-left: 33px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
     }
     .logo .ic {
       color: var(--accent-1);
@@ -668,6 +686,7 @@
       .pricing-card.featured { transform: scale(1); }
       nav { padding: 10px 14px; gap: 8px; top: 8px; margin-top: 8px; }
       .logo { font-size: 20px; }
+      .brand-subtitle { padding-left: 27px; font-size: 8px; }
       .nav-links a { padding: 6px 10px; font-size: 12px; }
       .theme-toggle {
         top: 16px;
@@ -700,7 +719,10 @@
   <div class="container">
     <!-- Navigation -->
     <nav>
-      <div class="logo" onclick="showPage('home')"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> DevStudio</div>
+      <div class="brand-lockup" onclick="showPage('home')">
+        <div class="logo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> DevStudio</div>
+        <div class="brand-subtitle">Avix Websites</div>
+      </div>
       <ul class="nav-links">
         <li><a onclick="showPage('home')" class="nav-link active" data-page="home">Home</a></li>
         <li><a onclick="showPage('services')" class="nav-link" data-page="services">Services</a></li>
@@ -1051,3 +1073,4 @@
   </script>
 </body>
 </html>
+
