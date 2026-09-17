@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevStudio - Web Development Services</title>
+  <!-- Website logo (browser tab / bookmark / home-screen icon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M14 49 27 16h10l13 33M21 38h22' fill='none' stroke='%23fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
@@ -1216,6 +1218,15 @@
     const ICON_FLAME = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>';
     const ICON_COPY = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
     const ICON_CHECK = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+    // Website logo (tab icon) — swaps from purple to red with the fire theme
+    function setFavicon(fire) {
+      const stops = fire
+        ? "<stop stop-color='#dc2626'/><stop offset='1' stop-color='#f87171'/>"
+        : "<stop stop-color='#6366f1'/><stop offset='1' stop-color='#a855f7'/>";
+      const svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" + stops + "</linearGradient></defs><rect width='64' height='64' rx='16' fill='url(#g)'/><path d='M14 49 27 16h10l13 33M21 38h22' fill='none' stroke='#fff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/></svg>";
+      const link = document.querySelector('link[rel="icon"]');
+      if (link) link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    }
     // Theme Toggle
     function toggleTheme() {
       const body = document.body;
@@ -1224,10 +1235,12 @@
       if (currentTheme === 'vermilion') {
         body.removeAttribute('data-theme');
         icon.innerHTML = ICON_DROPLET;
+        setFavicon(false);
         localStorage.setItem('theme', 'default');
       } else {
         body.setAttribute('data-theme', 'vermilion');
         icon.innerHTML = ICON_FLAME;
+        setFavicon(true);
         localStorage.setItem('theme', 'vermilion');
       }
     }
@@ -1236,6 +1249,7 @@
     if (savedTheme === 'vermilion') {
       document.body.setAttribute('data-theme', 'vermilion');
       document.getElementById('themeIcon').innerHTML = ICON_FLAME;
+      setFavicon(true);
     }
     // Create particles (fewer + GPU friendly for smoothness)
     const particlesContainer = document.getElementById('particles');
